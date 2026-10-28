@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#5d0a0a"><title>Angerly — Task Assignment Manager</title>
+<link rel="icon" href="angerloading.gif"><link rel="stylesheet" href="styles.css">
+<script src="config.js"></script><script src="seed-data.js"></script><script defer src="app.js"></script>
+</head>
+<body>
+<div id="loadingOverlay" class="loading-overlay" role="status" aria-live="polite">
+  <div class="loading-card"><img src="angerloading.gif" alt="Angerly logo" class="loading-logo"><strong>Loading Angrily...</strong><span id="loadingDetail">Preparing your workspace</span></div>
+</div>
+<div class="app-shell">
+<header class="topbar">
+ <a class="brand" href="#" aria-label="Angerly home"><img src="angerloading.gif" alt="" class="brand-logo"><span><strong>Angerly</strong><small>Academic Task Assignment &amp; Email Manager</small></span></a>
+ <div class="top-actions"><span id="connectionBadge" class="status-badge"><span class="status-dot"></span><span id="connectionText">Checking connection</span></span><button class="button button-outline" id="refreshBtn" type="button">↻ Refresh</button></div>
+</header>
+<section class="hero-panel">
+ <div class="hero-copy"><p class="eyebrow">GROUP PROJECT / CHAPTER 1</p><h1>Keep every task moving.</h1><p>Manage the ten Chapter 1 sections, keep member details organized, and send task notifications with Google Apps Script.</p></div>
+ <div class="hero-actions"><button class="button button-light" id="saveBtn" type="button">Save Changes</button><button class="button button-dark" id="sendAllBtn" type="button">✉ Notify Members</button></div>
+</section>
+<section class="metrics-grid" aria-label="Task progress">
+ <article class="metric-card"><span class="metric-label">Total tasks</span><strong id="metricTotal">10</strong><span class="metric-note">Assigned Chapter 1 sections</span></article>
+ <article class="metric-card"><span class="metric-label">Not started</span><strong id="metricNotStarted">0</strong><span class="metric-note">Awaiting work</span></article>
+ <article class="metric-card"><span class="metric-label">In progress</span><strong id="metricInProgress">0</strong><span class="metric-note">Currently being worked on</span></article>
+ <article class="metric-card"><span class="metric-label">Completed</span><strong id="metricCompleted">0</strong><span class="metric-note">Marked as finished</span></article>
+</section>
+<section class="workspace-panel">
+ <div class="workspace-heading"><div><p class="eyebrow">TEAM WORKSPACE</p><h2>Members &amp; assigned tasks</h2><p class="muted">Enter each member’s email, add a Google Docs link, and save before sending notifications.</p></div><div class="save-state"><span id="saveDot">●</span><span id="saveStateText">Ready</span><small id="lastSaved">Local workspace loaded</small></div></div>
+ <div class="toolbar"><label class="search-control"><span aria-hidden="true">⌕</span><input id="searchInput" type="search" placeholder="Search member or task…" aria-label="Search member or task"></label><label class="filter-control"><span>Status</span><select id="statusFilter"><option value="">All statuses</option><option>Not started</option><option>In progress</option><option>Completed</option></select></label><label class="filter-control"><span>Member</span><select id="memberFilter"><option value="">All members</option></select></label><button class="button button-quiet" id="clearFiltersBtn" type="button">Clear filters</button></div>
+ <div id="memberList" class="member-list"><div class="empty-state">Preparing tasks…</div></div>
+ <div class="bottom-bar"><span id="visibleCount">10 total tasks</span><div class="bottom-actions"><button class="button button-quiet" id="saveBottomBtn" type="button">Save Changes</button><button class="button button-primary" id="sendBottomBtn" type="button">Send Task Emails</button></div></div>
+</section>
+<footer><span>Angerly · Academic productivity, made clearer.</span><span>Persistent sync requires a configured Google Apps Script deployment.</span></footer>
+</div>
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<dialog id="notifyDialog" class="dialog"><div class="dialog-heading"><div><p class="eyebrow">EMAIL NOTIFICATIONS</p><h2>Notify task owners</h2></div><button class="close-button" id="closeDialogBtn" aria-label="Close dialog" type="button">×</button></div><p class="muted">Send task details to one member or all members with a valid email address. Notifications are sent only after the saved task data is available to Apps Script.</p><label class="field-label" for="notifyMember">RECIPIENTS</label><select id="notifyMember" class="full-input"><option value="ALL">All members</option></select><p class="small-note">Email submission depends on the Google account that owns or executes the Apps Script deployment. Inbox delivery cannot be guaranteed.</p><div class="dialog-actions"><button class="button button-quiet" id="cancelNotifyBtn" type="button">Cancel</button><button class="button button-dark" id="confirmSendBtn" type="button">Send Task Emails</button></div></dialog>
+</body></html>
